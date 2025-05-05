@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J.P. Morgan Classification for Legal Documents</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #1a365d;
+            color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        .section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            background-color: #f8fafc;
+            border-left: 5px solid #1a365d;
+        }
+        .card {
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+        }
+        .pillar-card {
+            background-color: #e6f7ff;
+            border-left: 4px solid #0ea5e9;
+        }
+        .step-card {
+            background-color: #f0f9ff;
+            border-left: 4px solid #0284c7;
+        }
+        .crisp-dm-diagram {
+            max-width: 100%;
+            height: auto;
+            margin: 2rem auto;
+            display: block;
+        }
+        .process-flow {
+            margin: 2rem 0;
+        }
+        .process-step {
+            position: relative;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            background-color: #dbeafe;
+            border-left: 4px solid #3b82f6;
+        }
+        .process-step::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #dbeafe;
+        }
+        .process-step:last-child::after {
+            display: none;
+        }
+        .conclusion {
+            background-color: #eef2ff;
+            border-left: 5px solid #4f46e5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="flex items-center justify-between">
+                <h1 class="text-3xl font-bold">J.P. Morgan Classification for Legal Documents</h1>
+            </div>
+            <div class="mt-4">
+                <h2 class="text-xl font-semibold">Problem Statement:</h2>
+                <p class="text-lg">Automate the classification of various legal documents.</p>
+            </div>
+        </div>
+
+        <!-- Introduction Section -->
+        <div class="section">
+            <h2 class="text-2xl font-bold mb-4">Understanding the Problem</h2>
+            <p class="mb-3">
+                To address this real-world business problem, we analyzed the case study, which involves classifying legal documents. 
+                The process begins by diagnosing the business problem, followed by predictive analysis to identify improvements.
+            </p>
+            <p class="mb-3">We approach this challenge systematically:</p>
+            <ol class="list-decimal pl-6 mb-4">
+                <li class="mb-2">Categorize the data to understand its nature.</li>
+                <li class="mb-2">Analyze the four pillars of CRISP-DM analytics to structure the solution.</li>
+                <li class="mb-2">Break down the problem into the six stages of CRISP-DM (Cross-Industry Standard Process for Data Mining).</li>
+            </ol>
+        </div>
+
+        <!-- CRISP-DM Overview Diagram -->
+        <div class="section">
+            <h2 class="text-2xl font-bold mb-4">CRISP-DM Methodology Overview</h2>
+            <p class="mb-4">The Cross-Industry Standard Process for Data Mining (CRISP-DM) provides a structured approach to planning and implementing data mining projects. It consists of six phases that cover the entire data mining lifecycle.</p>
+            
+            <div class="flex justify-center my-8">
+                <svg width="600" height="400" viewBox="0 0 600 400">
+                    <!-- Main Circle -->
+                    <circle cx="300" cy="200" r="150" fill="#f0f9ff" stroke="#3b82f6" stroke-width="2"/>
+                    
+                    <!-- Center Text -->
+                    <text x="300" y="200" text-anchor="middle" font-size="16" font-weight="bold" fill="#1a365d">CRISP-DM</text>
+                    
+                    <!-- Business Understanding -->
+                    <circle cx="300" cy="50" r="40" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="300" y="45" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a365d">Business</text>
+                    <text x="300" y="60" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a365d">Understanding</text>
+                    <line x1="300" y1="90" x2="300" y2="150" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5,5"/>
+                    
+                    <!-- Data Understanding -->
+                    <circle cx="450" cy="125" r="40" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="450" y="120" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a365d">Data</text>
+                    <text x="450" y="135" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a365d">Understanding</text>
+                    <line x1="410" y1="125" x2="350" y2="170" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5,5"/>
+                    
+                    <!-- Data Preparation -->
+                    <circle cx="450" cy="275" r="40" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="450" y="270" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a365d">Data</text>
+                    <text x="450" y="285" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a365d">Preparation</text>
+                    <line x1="410" y1="275" x2="350" y2="230" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5,5"/>
+                    
+                    <!-- Modeling -->
+                    <circle cx="300" cy="350" r="40" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="300" y="350" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a365d">Modeling</text>
+                    <line x1="300" y1="310" x2="300" y2="250" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5,5"/>
+                    
+                    <!-- Evaluation -->
+                    <circle cx="150" cy="275" r="40" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="150" y="275" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a365d">Evaluation</text>
+                    <line x1="190" y1="275" x2="250" y2="230" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5,5"/>
+                    
+                    <!-- Deployment -->
+                    <circle cx="150" cy="125" r="40" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="150" y="125" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a365d">Deployment</text>
+                    <line x1="190" y1="125" x2="250" y2="170" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5,5"/>
+                    
+                    <!-- Arrows showing cycle -->
+                    <path d="M 180 250 A 150 150 0 0 1 180 150" stroke="#3b82f6" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                    
+                    <!-- Arrow definition -->
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6"/>
+                        </marker>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Step I: Data Categorization -->
+        <div class="section">
+            <h2 class="text-2xl font-bold mb-4">Step I: Data Categorization</h2>
+            <p class="mb-3">While no dataset is provided, we identify potential categories of data:</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <div class="card">
+                    <h3 class="text-xl font-bold mb-2 text-blue-700">
+                        <i class="fas fa-chart-pie mr-2"></i>Attitudinal Data
+                    </h3>
+                    <p>Analyze sentiment or tone within the text (e.g., neutral, positive, or negative).</p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="text-xl font-bold mb-2 text-blue-700">
+                        <i class="fas fa-user-clock mr-2"></i>Behavioral Data
+                    </h3>
+                    <p>Examine metadata such as document location, modifications, or similar attributes.</p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="text-xl font-bold mb-2 text-blue-700">
+                        <i class="fas fa-users mr-2"></i>Demographic Data
+                    </h3>
+                    <p>Classify legal documents by type, client details, or other relevant demographics.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step II: Four Pillars of CRISP-DM Analytics -->
+        <div class="section">
+            <h2 class="text-2xl font-bold mb-4">Step II: Four Pillars of CRISP-DM Analytics</h2>
+            
+            <div class="process-flow">
+                <!-- Descriptive Analytics -->
+                <div class="card pillar-card mb-6">
+                    <div class="flex items-start">
+                        <div class="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4">
+                            <span class="font-bold">1</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2 text-blue-700">Descriptive Analytics</h3>
+                            <ul class="list-disc pl-6">
+                                <li>Understand data patterns and derive insights.</li>
+                                <li>Analyze document structure, volume, and outliers.</li>
+                                <li>Visualize data using tools like word clouds or graphs.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Diagnostic Analytics -->
+                <div class="card pillar-card mb-6">
+                    <div class="flex items-start">
+                        <div class="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4">
+                            <span class="font-bold">2</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2 text-blue-700">Diagnostic Analytics</h3>
+                            <ul class="list-disc pl-6">
+                                <li>Identify issues in manual reviews.</li>
+                                <li>Investigate unusual patterns or errors.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Predictive Analytics -->
+                <div class="card pillar-card mb-6">
+                    <div class="flex items-start">
+                        <div class="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4">
+                            <span class="font-bold">3</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2 text-blue-700">Predictive Analytics</h3>
+                            <ul class="list-disc pl-6">
+                                <li>Evaluate techniques for document classification.</li>
+                                <li>Assess limitations and select the best approach.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Prescriptive Analytics -->
+                <div class="card pillar-card">
+                    <div class="flex items-start">
+                        <div class="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4">
+                            <span class="font-bold">4</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2 text-blue-700">Prescriptive Analytics</h3>
+                            <ul class="list-disc pl-6">
+                                <li>Define the process for implementation.</li>
+                                <li>Recommend standard templates to reduce errors.</li>
+                                <li>Suggest future strategies for improvement.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Four Pillars Diagram -->
+            <div class="flex justify-center my-8">
+                <svg width="700" height="250" viewBox="0 0 700 250">
+                    <!-- Base Platform -->
+                    <rect x="100" y="200" width="500" height="30" fill="#1a365d" rx="5" ry="5"/>
+                    <text x="350" y="220" text-anchor="middle" font-size="16" fill="white" font-weight="bold">CRISP-DM Analytics Foundation</text>
+                    
+                    <!-- Four Pillars -->
+                    <rect x="130" y="80" width="80" height="120" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2" rx="5" ry="5"/>
+                    <text x="170" y="140" text-anchor="middle" font-size="14" fill="#1a365d" font-weight="bold" transform="rotate(-90, 170, 140)">Descriptive</text>
+                    
+                    <rect x="240" y="80" width="80" height="120" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2" rx="5" ry="5"/>
+                    <text x="280" y="140" text-anchor="middle" font-size="14" fill="#1a365d" font-weight="bold" transform="rotate(-90, 280, 140)">Diagnostic</text>
+                    
+                    <rect x="350" y="80" width="80" height="120" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2" rx="5" ry="5"/>
+                    <text x="390" y="140" text-anchor="middle" font-size="14" fill="#1a365d" font-weight="bold" transform="rotate(-90, 390, 140)">Predictive</text>
+                    
+                    <rect x="460" y="80" width="80" height="120" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2" rx="5" ry="5"/>
+                    <text x="500" y="140" text-anchor="middle" font-size="14" fill="#1a365d" font-weight="bold" transform="rotate(-90, 500, 140)">Prescriptive</text>
+                    
+                    <!-- Roof/Top -->
+                    <polygon points="350,30 570,80 130,80" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="350" y="65" text-anchor="middle" font-size="16" fill="#1a365d" font-weight="bold">Legal Document Classification</text>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Step III: Six Stages of CRISP-DM -->
+        <div class="section">
+            <h2 class="text-2xl font-bold mb-4">Step III: Six Stages of CRISP-DM</h2>
+            
+            <!-- Business Understanding -->
+            <div class="card step-card mb-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-800">
+                    <i class="fas fa-briefcase mr-2"></i>1. Business Understanding
+                </h3>
+                <ul class="list-disc pl-6">
+                    <li>Focus on project objectives and requirements.</li>
+                    <li>Automate legal document reviews to replace manual processes.</li>
+                    <li>Minimize errors and accelerate review times.</li>
+                    <li>Analyze risks, cost-benefits, and time savings.</li>
+                </ul>
+            </div>
+            
+            <!-- Data Understanding -->
+            <div class="card step-card mb-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-800">
+                    <i class="fas fa-database mr-2"></i>2. Data Understanding
+                </h3>
+                <ul class="list-disc pl-6">
+                    <li>Collect and analyze data.</li>
+                    <li>Determine if data is structured or unstructured.</li>
+                    <li>Gather historical data on loan agreements and legal documents.</li>
+                    <li>Assess data relevance and quality.</li>
+                    <li>Explore patterns within the data.</li>
+                </ul>
+            </div>
+            
+            <!-- Data Preparation -->
+            <div class="card step-card mb-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-800">
+                    <i class="fas fa-tasks mr-2"></i>3. Data Preparation
+                </h3>
+                <ul class="list-disc pl-6">
+                    <li>Clean data by removing duplicates, inconsistencies, and errors.</li>
+                    <li>Convert scanned documents into text using text mining.</li>
+                    <li>Test technologies to identify the most effective solution.</li>
+                    <li>Ensure data meets criteria for the next phase.</li>
+                </ul>
+            </div>
+            
+            <!-- Modeling -->
+            <div class="card step-card mb-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-800">
+                    <i class="fas fa-cogs mr-2"></i>4. Modeling
+                </h3>
+                <ul class="list-disc pl-6">
+                    <li>Select appropriate algorithms and techniques.</li>
+                    <li>Test multiple methods and choose the best for the business goal.</li>
+                    <li>Review existing techniques used in similar scenarios.</li>
+                    <li>Finalize the selected model.</li>
+                </ul>
+            </div>
+            
+            <!-- Evaluation -->
+            <div class="card step-card mb-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-800">
+                    <i class="fas fa-chart-line mr-2"></i>5. Evaluation
+                </h3>
+                <ul class="list-disc pl-6">
+                    <li>Compare techniques based on predefined criteria.</li>
+                    <li>Minimize errors and measure processing time.</li>
+                    <li>Assess accuracy and classification performance.</li>
+                    <li>Refine results to improve accuracy and efficiency.</li>
+                    <li>Validate all steps before proceeding to deployment.</li>
+                </ul>
+            </div>
+            
+            <!-- Deployment -->
+            <div class="card step-card">
+                <h3 class="text-xl font-bold mb-3 text-blue-800">
+                    <i class="fas fa-rocket mr-2"></i>6. Deployment
+                </h3>
+                <ul class="list-disc pl-6">
+                    <li>Deploy the solution in a real-time environment.</li>
+                    <li>Monitor performance and compare with test results.</li>
+                    <li>Prepare a final report and presentation.</li>
+                    <li>Implement improvements for higher accuracy.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Document Classification Workflow Diagram -->
+        <div class="section">
+            <h2 class="text-2xl font-bold mb-4">Document Classification Process</h2>
+            <p class="mb-6">The following diagram illustrates the workflow for classifying legal documents at J.P. Morgan:</p>
+            
+            <div class="flex justify-center my-8">
+                <svg width="700" height="400" viewBox="0 0 700 400">
+                    <!-- Input -->
+                    <rect x="50" y="50" width="120" height="60" rx="10" ry="10" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="110" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a365d">Legal Documents</text>
+                    
+                    <!-- Arrow -->
+                    <path d="M 170 80 L 220 80" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrow)"/>
+                    
+                    <!-- Data Preprocessing Box -->
+                    <rect x="220" y="50" width="150" height="60" rx="10" ry="10" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="295" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a365d">Data Preprocessing</text>
+                    
+                    <!-- Arrow -->
+                    <path d="M 370 80 L 420 80" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrow)"/>
+                    
+                    <!-- Feature Extraction Box -->
+                    <rect x="420" y="50" width="150" height="60" rx="10" ry="10" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="495" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a365d">Feature Extraction</text>
+                    
+                    <!-- Arrow -->
+                    <path d="M 495 110 L 495 160" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrow)"/>
+                    
+                    <!-- Model Training Box -->
+                    <rect x="420" y="160" width="150" height="60" rx="10" ry="10" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="495" y="195" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a365d">Model Training</text>
+                    
+                    <!-- Arrow -->
+                    <path d="M 420 190 L 370 190" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrow)"/>
+                    
+                    <!-- Classification Box -->
+                    <rect x="220" y="160" width="150" height="60" rx="10" ry="10" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="295" y="195" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a365d">Document Classification</text>
+                    
+                    <!-- Arrow -->
+                    <path d="M 220 190 L 170 190" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrow)"/>
+                    
+                    <!-- Output Box -->
+                    <rect x="50" y="160" width="120" height="60" rx="10" ry="10" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="110" y="195" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a365d">Categorized Documents</text>
+                    
+                    <!-- Arrow -->
+                    <path d="M 110 220 L 110 270" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrow)"/>
+                    
+                    <!-- Evaluation Box -->
+                    <rect x="50" y="270" width="250" height="60" rx="10" ry="10" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="175" y="305" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a365d">Evaluation &amp; Performance Analysis</text>
+                    
+                    <!-- Arrow -->
+                    <path d="M 300 300 L 350 300" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrow)"/>
+                    
+                    <!-- Deployment Box -->
+                    <rect x="350" y="270" width="250" height="60" rx="10" ry="10" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="475" y="305" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a365d">Deployment &amp; Continuous Improvement</text>
+                    
+                    <!-- Feedback Loop -->
+                    <path d="M 600 300 L 650 300 L 650 80 L 600 80" stroke="#3b82f6" stroke-width="2" fill="none" stroke-dasharray="5,5" marker-end="url(#arrow)"/>
+                    <text x="650" y="190" text-anchor="middle" font-size="12" fill="#1a365d" font-weight="bold" transform="rotate(90, 650, 190)">Feedback Loop</text>
+                    
+                    <!-- Arrow definition -->
+                    <defs>
+                        <marker id="arrow" markerWidth="10" markerHeight="7" refX="7" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6"/>
+                        </marker>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Conclusion Section -->
+        <div class="section conclusion">
+            <h2 class="text-2xl font-bold mb-4">Conclusion</h2>
+            <p class="mb-3">
+                This process systematically addresses the challenge of legal document classification. By clarifying objectives, understanding data, and building solutions, we handle complex tasks efficiently.
+            </p>
+            <p>
+                The CRISP-DM methodology provides a robust framework for approaching the document classification problem. By following these steps, J.P. Morgan can implement an automated system that reduces manual effort, improves accuracy, and accelerates the processing of legal documents.
+            </p>
+        </div>
+        
+    </div>
+</body>
+</html>
